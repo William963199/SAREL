@@ -1,34 +1,30 @@
-
+from tkinter import *
+from datetime import * 
+from tkcalendar import Calendar, DateEntry
+import tkinter.ttk
+from tkinter import font
+import csv
 
 class Programe:
-    CSV_FILE = "todo_list.csv"
-    def __init__():
-         
-    def load_csv_data():
-            try:
-                with open(CSV_FILE, mode='r', newline='', encoding='utf-8') as file:
-                    reader = csv.reader(file)
-                    for row in reader:
-                        if row:  # 비어있지 않은 행만 처리.
-                            todo_list.insert('', 'end', values=row)
-            except FileNotFoundError:
-                # 파일이 없으면 새로 파일이 생성될 것이기 때문에 pass
-                pass
+        CSV_FILE = "todo_list.csv"
+        def __init__():
+            
+        def load_csv_data():
+                try:
+                    with open(CSV_FILE, mode='r', newline='', encoding='utf-8') as file:
+                        reader = csv.reader(file)
+                        for row in reader:
+                            if row:  # 비어있지 않은 행만 처리.
+                                todo_list.insert('', 'end', values=row)
+                except FileNotFoundError:
+                    # 파일이 없으면 새로 파일이 생성될 것이기 때문에 pass
+                    pass
 
         def count_tasks_in_csv():
             count = 0
-            try:
-                with open(CSV_FILE, mode='r', newline='', encoding='utf-8') as file:
-                    reader = csv.reader(file)
-                    for row in reader:
-                        if row:  # 비어있지 않은 행만 처리
-                            count += 1
-            except FileNotFoundError:
-                # 파일이 없으면 0을 반환
-                pass
+            load_csv_data()
             return count
-
-
+        
         def add_work():
             total_task = 0
             total_tasks += 1
@@ -154,9 +150,8 @@ class Programe:
             global total_tasks
             print(f"토탈태스크값: {total_tasks}")
             try:
-                p = deleted_tasks / total_tasks * 100
-                print(int(p))
-                return int(p)
+                p = int(deleted_tasks / total_tasks * 100)
+                return (p)
             except ZeroDivisionError:
                 return 0
-            `~
+            
